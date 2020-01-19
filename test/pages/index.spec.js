@@ -10,4 +10,12 @@ describe('Pages index page spec', () => {
     await fireEvent.click(button)
     getByText('You already click the button 2 times')
   })
+
+  test('working good with emitting stuff', async () => {
+    const { getByText, getByLabelText } = render(PagesIndex)
+    const usernameInput = getByLabelText(/username/i)
+    await fireEvent.update(usernameInput, 'Kokomi')
+    await fireEvent.keyUp(usernameInput)
+    getByText('Hello, Kokomi')
+  })
 })
